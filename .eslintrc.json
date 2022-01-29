@@ -22,6 +22,8 @@
     ],
     "rules": {
         "prettier/prettier": "error",
-        "vue/no-multiple-template-root": "off"
+        "vue/no-multiple-template-root": "off",
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "off"
     }   
 }
