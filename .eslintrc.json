@@ -1,29 +1,25 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:vue/essential",
-        "airbnb-base",
-        "plugin:prettier/recommended"
-        // "prettier/prettier"
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "vue",
-        "@typescript-eslint",
-        "prettier"
-
-    ],
-    "rules": {
-        "prettier/prettier": "error",
-        "vue/no-multiple-template-root": "off",
-        "arrow-body-style": "off",
-        "prefer-arrow-callback": "off"
-    }   
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "vue/setup-compiler-macros": true
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "airbnb-base",
+    "plugin:prettier/recommended"
+    // "prettier/prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": ["vue", "@typescript-eslint", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "vue/no-multiple-template-root": "off",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
+  }
 }
