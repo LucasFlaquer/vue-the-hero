@@ -367,6 +367,13 @@
   resolved "https://registry.npmjs.org/@vue/shared/-/shared-3.2.29.tgz"
   integrity sha512-BjNpU8OK6Z0LVzGUppEk0CMYm/hKDnZfYdjSmPOs0N+TR1cLKJAkDwW8ASZUvaaSLEi6d3hVM7jnWnX+6yWnHw==
 
+"@zhuowenli/vue-feather-icons@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@zhuowenli/vue-feather-icons/-/vue-feather-icons-5.0.2.tgz#0de4512e5120db2f3c36b569770f3518564f4caa"
+  integrity sha512-a7rgGBZhhHUkgEa7pmhOSx6CxBGVsKDHxZnOgcHvFb0WHHvWWxmEFUQ3P2o8amImLYiYwTO2plPw5PLvP9vSRg==
+  dependencies:
+    vue "^3.0.0-beta.20"
+
 acorn-jsx@^5.3.1:
   version "5.3.2"
   resolved "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz"
@@ -2473,7 +2480,7 @@ vue-tsc@^0.29.8:
     "@volar/shared" "0.29.8"
     vscode-vue-languageservice "0.29.8"
 
-vue@^3.2.25:
+vue@^3.0.0-beta.20, vue@^3.2.25:
   version "3.2.29"
   resolved "https://registry.npmjs.org/vue/-/vue-3.2.29.tgz"
   integrity sha512-cFIwr7LkbtCRanjNvh6r7wp2yUxfxeM2yPpDQpAfaaLIGZSrUmLbNiSze9nhBJt5MrZ68Iqt0O5scwAMEVxF+Q==
