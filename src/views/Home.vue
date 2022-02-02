@@ -11,19 +11,20 @@
     >
       <div class="flex-grow">
         <img src="../assets/hero-logo.svg" alt="Logo" />
-        <form action="" class="max-w-sm mt-20">
+        <form action="" class="max-w-sm mt-20" @submit.prevent="handleLogon">
           <h1 class="text-3xl font-default font-500 mb-4">Faça seu logon</h1>
           <input
             class="h-14 px-2 py-2 rounded-lg w-full"
             type="text"
             placeholder="Sua ID"
+            v-model="value"
           />
           <button
             class="mt-3 bg-redHero text-background font-bold p-4 rounded-lg w-full"
           >
             Entrar
           </button>
-          <a href="" class="block mt-4 font-500">
+          <a href="" class="block mt-4 font-500 font-default">
             <log-in-icon
               size="1.5x"
               class="inline-block text-redHero mr-3 align-bottom"
@@ -38,4 +39,11 @@
 </template>
 <script setup lang="ts">
 import { LogInIcon } from '@zhuowenli/vue-feather-icons';
+import { ref } from 'vue';
+
+const value = ref('');
+function handleLogon() {
+  // eslint-disable-next-line no-console
+  console.log('logon');
+}
 </script>
