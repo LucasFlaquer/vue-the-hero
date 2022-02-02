@@ -5,8 +5,8 @@
     "vue/setup-compiler-macros": true
   },
   "extends": [
-    "plugin:vue/essential",
     "airbnb-base",
+    "plugin:vue/essential",
     "plugin:prettier/recommended"
     // "prettier/prettier"
   ],
@@ -20,7 +20,15 @@
     "prettier/prettier": "error",
     "vue/no-multiple-template-root": "off",
     "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": [
+      "error",
+      {
+        "ts": "never",
+        "vue": "always"
+      }
+    ]
   },
   "overrides": [
     {
