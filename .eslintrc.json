@@ -30,13 +30,19 @@
         "vue": "always"
       }
     ],
-     "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off"
   },
   "overrides": [
     {
       "files": ["src/views/**/*.vue"],
       "rules": {
         "vue/multi-word-component-names": 0
+      }
+    },
+    {
+      "files": ["src/otherServer.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
       }
     }
   ]
