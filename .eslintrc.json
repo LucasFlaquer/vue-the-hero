@@ -15,7 +15,11 @@
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
-  "plugins": ["vue", "@typescript-eslint", "prettier"],
+  "plugins": [
+    "vue",
+    "@typescript-eslint",
+    "prettier"
+  ],
   "rules": {
     "prettier/prettier": "error",
     "vue/no-multiple-template-root": "off",
@@ -30,17 +34,25 @@
         "vue": "always"
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ]
   },
   "overrides": [
     {
-      "files": ["src/views/**/*.vue"],
+      "files": [
+        "src/views/**/*.vue"
+      ],
       "rules": {
         "vue/multi-word-component-names": 0
       }
     },
     {
-      "files": ["src/otherServer.ts"],
+      "files": [
+        "src/otherServer.ts"
+      ],
       "rules": {
         "import/no-extraneous-dependencies": "off"
       }
