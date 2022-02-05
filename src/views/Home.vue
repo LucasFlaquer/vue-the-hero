@@ -40,10 +40,24 @@
 <script setup lang="ts">
 import { LogInIcon } from '@zhuowenli/vue-feather-icons';
 import { ref } from 'vue';
+import axios from 'axios';
+import { TOAST_SYMBOLS } from '../plugins/ToastPlugin';
+import { injectStrict } from '../utils/injectStrict';
 
+const notifySuccess = injectStrict(TOAST_SYMBOLS.SUCCESS);
+const notifyError = injectStrict(TOAST_SYMBOLS.ERROR);
 const value = ref('');
-function handleLogon() {
-  // eslint-disable-next-line no-console
-  console.log('logon');
+async function handleLogon() {
+  try {
+    const response = await axios.post('/api/logon', {
+      id: value.value,
+    });
+    // store respone ong data
+
+    notifySuccess('Logon realizado com sucesso');
+  } catch (error) {
+    console.error(error);
+    notifyError('Erro ao realizar o logon');
+  }
 }
 </script>
