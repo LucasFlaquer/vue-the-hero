@@ -1,3 +1,7 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "volar.completion.autoImportComponent": true,
+  "autoimport.filesToScan": "**/*.{ts,tsx,vue}","editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }

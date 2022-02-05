@@ -1,29 +1,61 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:vue/essential",
-        "airbnb-base",
-        "plugin:prettier/recommended"
-        // "prettier/prettier"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "vue/setup-compiler-macros": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:vue/essential",
+    "plugin:prettier/recommended"
+    // "prettier/prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "vue",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "vue/no-multiple-template-root": "off",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "ts": "never",
+        "vue": "always"
+      }
     ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/views/**/*.vue"
+      ],
+      "rules": {
+        "vue/multi-word-component-names": 0
+      }
     },
-    "plugins": [
-        "vue",
-        "@typescript-eslint",
-        "prettier"
-
-    ],
-    "rules": {
-        "prettier/prettier": "error",
-        "vue/no-multiple-template-root": "off",
-        "arrow-body-style": "off",
-        "prefer-arrow-callback": "off"
-    }   
+    {
+      "files": [
+        "src/otherServer.ts"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
 }
