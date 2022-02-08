@@ -7,14 +7,14 @@
           Bem vinda, APAD
         </p>
       </div>
-      <div class="flex">
+      <div class="basis-1/3 flex">
         <DefaultButton> Cadastrar novo caso </DefaultButton>
         <button
-          class="ml-6 border text-center p-3 h-14 w-14 rounded-lg border-grayborder"
+          class="group ml-6 border text-center p-4 rounded-lg border-grayborder hover:bg-redHero group-transition-colors duration-200"
         >
           <power-icon
             size="1.5x"
-            class="inline-block text-redHero align-bottom"
+            class="inline-block text-redHero align-bottom group-hover:text-white"
           />
         </button>
       </div>
