@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <router-view></router-view>
+  <div class="bg-background">
+    <router-view />
+  </div>
 </template>
