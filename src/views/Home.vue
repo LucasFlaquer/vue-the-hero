@@ -41,20 +41,32 @@
 import { LogInIcon } from '@zhuowenli/vue-feather-icons';
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 import { TOAST_SYMBOLS } from '../plugins/ToastPlugin';
 import { injectStrict } from '../utils/injectStrict';
+
+interface LogInProps {
+  ong: {
+    name: string;
+    code: string;
+  };
+}
+
+const router = useRouter();
 
 const notifySuccess = injectStrict(TOAST_SYMBOLS.SUCCESS);
 const notifyError = injectStrict(TOAST_SYMBOLS.ERROR);
 const value = ref('');
 async function handleLogon() {
   try {
-    const response = await axios.post('/api/logon', {
+    const { data } = await axios.post<LogInProps>('/api/logon', {
       id: value.value,
     });
-    // store respone ong data
-
+    const { ong } = data;
+    localStorage.setItem('code', ong.code);
+    localStorage.setItem('name', ong.name);
     notifySuccess('Logon realizado com sucesso');
+    router.push({ name: 'cases' });
   } catch (error) {
     console.error(error);
     notifyError('Erro ao realizar o logon');
