@@ -53,10 +53,10 @@ interface LogInProps {
 }
 
 const router = useRouter();
-
-const notifySuccess = injectStrict(TOAST_SYMBOLS.SUCCESS);
 const notifyError = injectStrict(TOAST_SYMBOLS.ERROR);
+
 const value = ref('');
+
 async function handleLogon() {
   try {
     const { data } = await axios.post<LogInProps>('/api/logon', {
@@ -65,7 +65,6 @@ async function handleLogon() {
     const { ong } = data;
     localStorage.setItem('code', ong.code);
     localStorage.setItem('name', ong.name);
-    notifySuccess('Logon realizado com sucesso');
     router.push({ name: 'cases' });
   } catch (error) {
     console.error(error);

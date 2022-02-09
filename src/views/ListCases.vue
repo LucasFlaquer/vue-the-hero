@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <img src="../assets/hero-logo-small.svg" alt="Logo" />
         <p class="ml-12 font-default font-normal text-xl text-mainTitle">
-          Bem vinda, APAD
+          Bem vinda, {{ ongName }}
         </p>
       </div>
       <div class="basis-1/3 flex">
@@ -29,7 +29,27 @@
 </template>
 <script setup>
 import { PowerIcon } from '@zhuowenli/vue-feather-icons';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import MainTitle from '../components/MainTitle.vue';
 import DefaultButton from '../components/DefaultButton.vue';
 import CardCase from '../components/CardCase.vue';
+import { injectStrict } from '../utils/injectStrict';
+import { TOAST_SYMBOLS } from '../plugins/ToastPlugin';
+
+const ongName = ref('');
+const router = useRouter();
+const notifySuccess = injectStrict(TOAST_SYMBOLS.SUCCESS);
+const notifyError = injectStrict(TOAST_SYMBOLS.ERROR);
+
+onMounted(() => {
+  const name = localStorage.getItem('name');
+  if (!name) {
+    notifyError('Oops parece que sua sessão expirou. Faça logon novamente');
+    router.push('/');
+    return;
+  }
+  notifySuccess(`Bem vinda, ${name}`);
+  ongName.value = name;
+});
 </script>
