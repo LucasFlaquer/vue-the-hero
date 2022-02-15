@@ -31,6 +31,7 @@
 import { PowerIcon } from '@zhuowenli/vue-feather-icons';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 import MainTitle from '../components/MainTitle.vue';
 import DefaultButton from '../components/DefaultButton.vue';
 import CardCase from '../components/CardCase.vue';
@@ -38,12 +39,14 @@ import { injectStrict } from '../utils/injectStrict';
 import { TOAST_SYMBOLS } from '../plugins/ToastPlugin';
 
 const ongName = ref('');
+const ongCode = ref('');
 const router = useRouter();
 const notifySuccess = injectStrict(TOAST_SYMBOLS.SUCCESS);
 const notifyError = injectStrict(TOAST_SYMBOLS.ERROR);
 
-onMounted(() => {
+onMounted(async () => {
   const name = localStorage.getItem('name');
+  const code = localStorage.getItem('code');
   if (!name) {
     notifyError('Oops parece que sua sessão expirou. Faça logon novamente');
     router.push('/');
@@ -51,5 +54,8 @@ onMounted(() => {
   }
   notifySuccess(`Bem vinda, ${name}`);
   ongName.value = name;
+  ongCode.value = code;
+
+  const response = await axios.get(`/api/ongs/${code}`);
 });
 </script>
