@@ -1,15 +1,28 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
 // src/server.js
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { createServer, Factory, Model, Response } from 'miragejs';
+import {
+  belongsTo,
+  createServer,
+  Factory,
+  hasMany,
+  Model,
+  Response,
+  Serializer,
+} from 'miragejs';
 import faker from '@faker-js/faker';
 
 export function makeServer({ environment = 'development' } = {}) {
   const server = createServer({
     environment,
     models: {
-      user: Model,
-      ong: Model,
+      ong: Model.extend({
+        cases: hasMany('case'),
+      }),
+      case: Model.extend({
+        ong: belongsTo('ong'),
+      }),
     },
     factories: {
       ong: Factory.extend({
@@ -32,6 +45,23 @@ export function makeServer({ environment = 'development' } = {}) {
           return faker.random.alphaNumeric(8);
         },
       }),
+      case: Factory.extend({
+        title() {
+          return faker.lorem.words(5);
+        },
+        description() {
+          return faker.lorem.paragraph();
+        },
+        value() {
+          return faker.finance.amount();
+        },
+      }),
+    },
+    serializers: {
+      application: Serializer,
+      ong: Serializer.extend({
+        include: ['cases'],
+      }),
     },
     seeds(server) {
       server.create('ong', {
@@ -41,17 +71,13 @@ export function makeServer({ environment = 'development' } = {}) {
         city: 'city',
         uf: 'SP',
         code: '123',
+        cases: server.createList('case', 3),
       });
       server.createList('ong', 5);
     },
 
     routes() {
       this.namespace = 'api';
-
-      // this.get('/users', (schema) => {
-      //   return schema.users.all();
-      // });
-
       this.post('/logon', (schema, request) => {
         const payload = JSON.parse(request.requestBody);
         const ong = schema.ongs.findBy({ code: payload.id });
@@ -59,6 +85,13 @@ export function makeServer({ environment = 'development' } = {}) {
         return new Response(401, {}, { error: 'Ong ID invalid' });
       });
       this.get('/ongs');
+      // this.get('/ongs/:id');
+      this.get('/ongs/:code', (schema, request) => {
+        const ong = schema.ongs.findBy({ code: request.params.code });
+        console.log(ong);
+        if (ong) return new Response(200, {}, ong);
+        return new Response(401, {}, { error: 'Ong ID invalid' });
+      });
     },
   });
 
