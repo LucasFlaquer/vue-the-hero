@@ -22,14 +22,14 @@
     <main>
       <MainTitle class="mb-6">Casos Cadastrados</MainTitle>
       <section class="grid grid-cols-2 gap-8 pb-20">
-        <CardCase v-for="index in 10" :key="index" />
+        <CardCase v-for="item in ongCases" :key="item.id" :case="item" />
       </section>
     </main>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { PowerIcon } from '@zhuowenli/vue-feather-icons';
-import { onMounted, ref } from 'vue';
+import { onMounted, Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import MainTitle from '../components/MainTitle.vue';
@@ -37,16 +37,19 @@ import DefaultButton from '../components/DefaultButton.vue';
 import CardCase from '../components/CardCase.vue';
 import { injectStrict } from '../utils/injectStrict';
 import { TOAST_SYMBOLS } from '../plugins/ToastPlugin';
+import { ICase } from '../types/cases';
 
 const ongName = ref('');
 const ongCode = ref('');
+// eslint-disable-next-line prettier/prettier
+const ongCases = ref([]) as Ref<ICase[]>;
 const router = useRouter();
 const notifySuccess = injectStrict(TOAST_SYMBOLS.SUCCESS);
 const notifyError = injectStrict(TOAST_SYMBOLS.ERROR);
 
 onMounted(async () => {
   const name = localStorage.getItem('name');
-  const code = localStorage.getItem('code');
+  const code = localStorage.getItem('code') || '';
   if (!name) {
     notifyError('Oops parece que sua sessão expirou. Faça logon novamente');
     router.push('/');
@@ -56,6 +59,7 @@ onMounted(async () => {
   ongName.value = name;
   ongCode.value = code;
 
-  const response = await axios.get(`/api/ongs/${code}`);
+  const { data } = await axios.get(`/api/ongs/${code}`);
+  ongCases.value = [...data.cases];
 });
 </script>
