@@ -50,10 +50,10 @@ export function makeServer({ environment = 'development' } = {}) {
           return faker.lorem.words(5);
         },
         description() {
-          return faker.lorem.paragraph();
+          return faker.lorem.paragraph(1);
         },
         value() {
-          return faker.finance.amount();
+          return faker.finance.amount(200, 300);
         },
       }),
     },
@@ -71,7 +71,7 @@ export function makeServer({ environment = 'development' } = {}) {
         city: 'city',
         uf: 'SP',
         code: '123',
-        cases: server.createList('case', 3),
+        cases: server.createList('case', 10),
       });
       server.createList('ong', 5);
     },

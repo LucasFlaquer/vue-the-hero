@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"volar.completion.autoImportComponent": true,
+		"autoimport.filesToScan": "**/*.{ts,tsx,vue}"
+	}
+}
