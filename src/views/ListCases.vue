@@ -27,9 +27,13 @@
     </header>
     <main>
       <MainTitle class="mb-6">Casos Cadastrados</MainTitle>
-      <section class="grid grid-cols-2 gap-8 pb-20">
+      <transition-group
+        name="list"
+        tag="section"
+        class="grid grid-cols-2 gap-8 pb-20"
+      >
         <CardCase v-for="item in ongCases" :key="item.id" :case="item" />
-      </section>
+      </transition-group>
     </main>
   </div>
 </template>
@@ -72,3 +76,14 @@ function createCase() {
   router.push({ name: 'cases-create' });
 }
 </script>
+<style>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>
