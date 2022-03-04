@@ -1,5 +1,5 @@
 <template>
-  <div class="container h-full max-w-6xl mx-auto">
+  <div class="container h-full min-h-screen max-w-6xl mx-auto">
     <header class="flex items-start justify-between pt-6 mb-20">
       <div class="flex items-center">
         <img src="../assets/hero-logo-small.svg" alt="Logo" />
@@ -8,9 +8,15 @@
         </p>
       </div>
       <div class="basis-1/3 flex">
-        <DefaultButton> Cadastrar novo caso </DefaultButton>
+        <DefaultButton @click="createCase"> Cadastrar novo caso </DefaultButton>
         <button
-          class="group ml-6 border text-center p-4 rounded-lg border-grayborder hover:bg-redHero group-transition-colors duration-200"
+          :class="[
+            'group',
+            'ml-6',
+            'border',
+            'text-center',
+            'p-4 rounded-lg border-grayborder hover:bg-redHero group-transition-colors duration-200',
+          ]"
         >
           <power-icon
             size="1.5x"
@@ -62,4 +68,7 @@ onMounted(async () => {
   const { data } = await axios.get(`/api/ongs/${code}`);
   ongCases.value = [...data.cases];
 });
+function createCase() {
+  router.push({ name: 'cases-create' });
+}
 </script>
