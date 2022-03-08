@@ -80,14 +80,14 @@ export function makeServer({ environment = 'development' } = {}) {
       this.namespace = 'api';
       this.post('/logon', (schema, request) => {
         const payload = JSON.parse(request.requestBody);
-        const ong = schema.ongs.findBy({ code: payload.id });
+        const ong = schema.findBy('ong', { code: payload.id });
         if (ong) return new Response(200, {}, ong);
         return new Response(401, {}, { error: 'Ong ID invalid' });
       });
       this.get('/ongs');
       // this.get('/ongs/:id');
       this.get('/ongs/:code', (schema, request) => {
-        const ong = schema.ongs.findBy({ code: request.params.code });
+        const ong = schema.findBy('ong', { code: request.params.code });
         console.log(ong);
         if (ong) return new Response(200, {}, ong);
         return new Response(401, {}, { error: 'Ong ID invalid' });
